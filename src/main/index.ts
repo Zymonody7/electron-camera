@@ -6,21 +6,27 @@ import icon from '../../resources/icon.png?asset'
 function createWindow(): void {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 970,
-    height: 700,
+    width: 300,
+    height: 300,
+    minHeight: 250,
+    minWidth: 250,
+    maxHeight: 500,
+    maxWidth: 500,
     show: false,
+    alwaysOnTop: true,
     autoHideMenuBar: true,
+    frame: false,
     ...(process.platform === 'linux' ? { icon } : {}),
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
       sandbox: false
     }
   })
-
+  mainWindow.setAspectRatio(1)
+  mainWindow.webContents.openDevTools()
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
   })
-
   mainWindow.webContents.setWindowOpenHandler((details) => {
     shell.openExternal(details.url)
     return { action: 'deny' }

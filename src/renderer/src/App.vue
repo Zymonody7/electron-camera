@@ -1,12 +1,11 @@
 <script setup lang="ts">
-import { ElButton } from 'element-plus'
+import Cemera from './components/Camera.vue'
 </script>
 
 <template>
-  <ElButton>123</ElButton>
-  <button class="bg-red-600">123</button>
+  <Suspense>
+    <Cemera></Cemera>
+  </Suspense>
 </template>
 
-<style lang="less">
-@import './assets/css/styles.less';
-</style>
+<style lang="less"></style>
